@@ -2,12 +2,12 @@ const { Schema, model } = require("mongoose");
 
 const stationSchema = new Schema(
     {
-    stationName : String,
-    line : String,
+    name : String,
+    line : [],
     district : String,
     currentCapacity: Number,
     loadFactor : Number,
-    suggestion : [{ type: Schema.Types.ObjectId, ref : 'Suggestion'}]
+    suggestions : [{ type: Schema.Types.ObjectId, ref : 'Suggestion'}]
     }
 );
 

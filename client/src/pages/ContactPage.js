@@ -1,10 +1,8 @@
-import Navbar from '../components/Navbar'
 
 function ContactPage () {
 
     return(
         <div>
-            <Navbar />
             <h2>help us make Berlin into a bicycle friendlier city</h2>
             <form>
                 <input type="text" placeholder="your name" />
