@@ -12,10 +12,15 @@ import ProtectedRoute from './components/ProtectedRoute';
 import StationInfo from './components/StationInfo';
 import Navbar from './components/Navbar';
 
+import React, { useRef, useEffect, useState } from 'react';
+
 function App() {
+
+
   return (
     <div className="App">
       <Navbar />
+
       <Routes>
         <Route path='/' element={ <HomePage /> } />
         <Route path='/start' element={ <StartPage /> } />
