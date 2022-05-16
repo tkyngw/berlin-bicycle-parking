@@ -1,9 +1,7 @@
-import Navbar from "./Navbar";
 
 function SpotInfo() {
     return (
         <div>
-            <Navbar />
             <aside>
                 <h3>choose a spot among avavilable ones</h3>
             </aside>

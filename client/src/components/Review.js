@@ -1,9 +1,8 @@
-import Navbar from "./Navbar";
+
 
 function Review() {
     return (
         <div>
-            <Navbar />
             <aside>
                 <h3>review and submit your suggestion</h3>
             </aside>

@@ -1,9 +1,8 @@
-import Navbar from "./Navbar";
+
 
 function Stands() {
     return (
         <div>
-            <Navbar />
             <aside>
                 <h3>choose the types of bicycle stands</h3>
             </aside>

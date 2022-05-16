@@ -14,3 +14,5 @@ const suggestionSchema = new Schema(
 );
 
 const Suggestion = model("Suggestion", suggestionSchema);
+
+module.exports = Suggestion;

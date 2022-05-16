@@ -1,9 +1,8 @@
-import Navbar from "../components/Navbar";
+
 
 function SuggestionPage() {
     return (
         <div>
-            <Navbar />
             <aside>
                 <h3>share us your idea now! this links to new suggestion</h3>
             </aside>
