@@ -6,8 +6,8 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import SuggestionPage from './pages/SuggestionPage';
-import SignUpPage from './pages/SignUpPage'
-import LogInPage from './pages/LogInPage'
+// import SignUpPage from './pages/SignUpPage'
+// import LogInPage from './pages/LogInPage'
 import ProtectedRoute from './components/ProtectedRoute';
 // import StationInfo from './components/StationInfo';
 import Navbar from './components/Navbar';
@@ -22,15 +22,15 @@ function App() {
         <Route path='/' element={ <HomePage /> } />
         {/* <Route path='/start' element={ <StartPage /> } /> */}
         <Route path='/about' element={ <AboutPage /> } />
-        <Route path='/suggestions' element={ 
+        {/* <Route path='/suggestions' element={ 
         <ProtectedRoute>
           <SuggestionPage />
         </ProtectedRoute>
-         } />
+         } /> */}
         <Route path='/contact' element={ <ContactPage />} />
         {/* <Route path='/stations/:id' element={<StationInfo />} /> */}
-        <Route path='/signup' element={<SignUpPage/>} />
-        <Route path='/login' element={<LogInPage />} />
+        {/* <Route path='/signup' element={<SignUpPage/>} />
+        <Route path='/login' element={<LogInPage />} /> */}
       </Routes>
     </div>
   );
