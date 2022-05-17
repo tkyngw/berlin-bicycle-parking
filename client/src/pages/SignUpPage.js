@@ -7,34 +7,34 @@ import { useState } from 'react'
 
 function SignUpPage(){
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState(undefined);
+    // const [name, setName] = useState('')
+    // const [email, setEmail] = useState('')
+    // const [password, setPassword] = useState('')
+    // const [errorMessage, setErrorMessage] = useState(undefined);
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
-    const handleSubmit = e => {
-		e.preventDefault()
-		const requestBody = { email, password, name }
-		axios.post('/api/auth/signup', requestBody)
-			.then(response => {
-				// redirect to login
-				navigate('/login')
-			})
-			.catch(err => {
-				const errorDescription = err.response.data.message
-				setErrorMessage(errorDescription)
-			})
-	}
+    // const handleSubmit = e => {
+	// 	e.preventDefault()
+	// 	const requestBody = { email, password, name }
+	// 	axios.post('/api/auth/signup', requestBody)
+	// 		.then(response => {
+	// 			// redirect to login
+	// 			navigate('/login')
+	// 		})
+	// 		.catch(err => {
+	// 			const errorDescription = err.response.data.message
+	// 			setErrorMessage(errorDescription)
+	// 		})
+	// }
 
-    const handleEmail = e => setEmail(e.target.value)
-	const handleName = e => setName(e.target.value)
-	const handlePassword = e => setPassword(e.target.value)
+    // const handleEmail = e => setEmail(e.target.value)
+	// const handleName = e => setName(e.target.value)
+	// const handlePassword = e => setPassword(e.target.value)
 
     return (
         <div>
-            <article>
+            {/* <article>
             <h2>Create an account</h2>
                <form onSubmit={handleSubmit}>
                    <input type="text" name="name" value={name} onChange={handleName} placeholder="name" />
@@ -44,7 +44,7 @@ function SignUpPage(){
                </form>
                {errorMessage && <h5>{errorMessage}</h5>}
                <p>Have an account? <Link to='/login'>Log-in</Link></p>
-            </article>
+            </article> */}
 
         </div>
     )
