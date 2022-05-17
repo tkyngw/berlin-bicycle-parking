@@ -1,4 +1,3 @@
-import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
@@ -6,26 +5,26 @@ import NewSuggestion from './NewSuggestion'
 
 
 function StationInfo() {
-    // const { id } = useParams()
-    // console.log(id)
+    const { id } = useParams()
+    console.log(id)
 
-    // const [station, setStation] = useState('')
-    // const [showSuggestion, setShowSuggetions] = useState('false')
+    const [station, setStation] = useState('')
+    const [showSuggestion, setShowSuggetions] = useState('false')
 
-    // useEffect(() => {
-    //     axios
-    //     .get(`/api/stations/${id}`)
-    //     .then(response => {
-    //         // console.log(response.data)
-    //         setStation(response.data)
-    //     })
-    //     .catch(err => console.log(err))
-    // },[])
+    useEffect(() => {
+        axios
+        .get(`/api/stations/${id}`)
+        .then(response => {
+            // console.log(response.data)
+            setStation(response.data)
+        })
+        .catch(err => console.log(err))
+    },[])
 
 
     return (
         <div>
-            {/* <aside>
+            <aside>
                 <h3>About the station you chose</h3>
             </aside>
             <article>
@@ -41,17 +40,15 @@ function StationInfo() {
                 <section>
                     {!showSuggestion? <NewSuggestion station={station}/> :  
                     <div>
-                        <Link to='/'><p onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</p></Link>
+                        <Link to=''><p onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</p></Link>
                         <Link to='/suggestions'><p>View Suggestions</p></Link> 
                     </div>}
                    
                 </section>
-            </article> */}
+            </article>
         </div>
     )
 }
 
 export default StationInfo;
-
-
 

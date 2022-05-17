@@ -6,44 +6,44 @@ import { AuthContext } from '../context/auth'
 
 function LogInPage(){
 
-// const [email, setEmail] = useState('')
-// const [password, setPassword] = useState('')
-// const [errorMessage, setErrorMessage] = useState(undefined);
+const [email, setEmail] = useState('')
+const [password, setPassword] = useState('')
+const [errorMessage, setErrorMessage] = useState(undefined);
 
-// const navigate = useNavigate()
+const navigate = useNavigate()
 
-// const { storeToken, verifyStoredToken } = useContext(AuthContext)
+const { storeToken, verifyStoredToken } = useContext(AuthContext)
 
-// const handleSubmit = e => {
-//     e.preventDefault()
-//     const requestBody = { email, password }
-//     axios.post('/api/auth/login', requestBody)
-//         .then(response => {
-//             // redirect to projects
-//             console.log('i have a token mothafukkas')
-//             const token = response.data.authToken
-//             // store the token
-//             storeToken(token)
-//             verifyStoredToken()
-//                 .then(() => {
-//                     // redirect to projects
-//                     navigate('/')
-//                 })
-//         })
-//         .catch(err => {
-//             const errorDescription = err.response.data.message
-//             setErrorMessage(errorDescription)
-//         })
-// }
+const handleSubmit = e => {
+    e.preventDefault()
+    const requestBody = { email, password }
+    axios.post('/api/auth/login', requestBody)
+        .then(response => {
+            // redirect to projects
+            console.log('i have a token mothafukkas')
+            const token = response.data.authToken
+            // store the token
+            storeToken(token)
+            verifyStoredToken()
+                .then(() => {
+                    // redirect to projects
+                    navigate('/')
+                })
+        })
+        .catch(err => {
+            const errorDescription = err.response.data.message
+            setErrorMessage(errorDescription)
+        })
+}
 
 
-// const handleEmail = e => setEmail(e.target.value)
-// const handlePassword = e => setPassword(e.target.value)
+const handleEmail = e => setEmail(e.target.value)
+const handlePassword = e => setPassword(e.target.value)
 
 
     return (
         <div>
-            {/* <article>
+            <article>
             <h2>Log in to leave a suggestion </h2>
                <form onSubmit={handleSubmit}>
                    <input type="email" value={email} placeholder="Email" onChange={handleEmail}/>
@@ -53,7 +53,7 @@ function LogInPage(){
 
                {errorMessage && <h5>{errorMessage}</h5>}
 
-            </article> */}
+            </article>
 
         </div>
     )
