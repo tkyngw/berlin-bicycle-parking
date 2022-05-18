@@ -12,6 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import StationInfo from './components/StationInfo';
 import Navbar from './components/Navbar';
 
+
 function App() {
   return (
     <div className="App">
