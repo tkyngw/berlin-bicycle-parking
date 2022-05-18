@@ -1,31 +1,19 @@
 import StationList from '../components/StationList'
-import { useState } from 'react'
+import circle from '../images/circle.png'
 
 function StartPage() {
 
-    const [showStationList, setShowStationList] = useState('false')
-
-    const handleClick = (e) => {
-        setShowStationList(!showStationList)
-    }
 
     return (
-        <div>
-            <aside>
+        <div className='contentpage'>
+            <aside id="sidebar">
                 <h3>Choose a station to get started</h3>
+                <img src={circle} alt="circle" width={100}></img>
             </aside>
-            <article>
-                <section>Map</section>
-                <section>
-                    <input type="text" placeholder="enter the name of a station to start" name="q"></input>
-                    <button>Search</button>
-                </section>
-                <section>
-                    {!showStationList?  
-                    <div> <StationList /> </div> :
-                    <p>or you can find stations by name <button onClick={handleClick}>here</button></p>
-                     }  
-                </section>
+            <article className='station'>
+            <div id='start'>
+              <StationList /> 
+              </div>
             </article>
         </div>
     )

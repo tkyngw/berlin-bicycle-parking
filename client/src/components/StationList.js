@@ -7,6 +7,8 @@ import StationInfo from './StationInfo'
 
 function StationList() {
     const [stations, setStations] = useState([])
+    const [name, setName] = useState([])
+
 
     const getAllStations = () => {
         axios
@@ -23,18 +25,46 @@ function StationList() {
         getAllStations()
     }, [])
 
+    // const handleSubmit = e => {
+	// 	e.preventDefault()
+	// 	const requestBody = { name }
+	// 	axios.post('/api/stations/', requestBody)
+	// 		.then(response => {
+	// 			// redirect to login
+	// 		})
+	// }
+
+    // const getTheName = (e) => {
+    //     setName(e.target.value)
+    // }
+
+    let filtered = stations.sort(function (a,b) {
+        const nameA = a.name.toUpperCase()
+        const nameB =  b.name.toUpperCase()
+        if (nameA > nameB){
+            return 1
+        } if (nameA < nameB) {
+            return -1
+        }
+
+    })
+
     return (
         <div className='stationList'>
-            <aside>
-                <h3>Choose a station to get started</h3>
-            </aside>
             <article>
                 <h3>Stations by name</h3>
-                {stations.map(station =>
+                {/* <form onSubmit={handleSubmit}>
+                    <label>Name</label>
+                    <input type="text" value={name} onChange={getTheName}></input>
+                    <button type="submit">submit</button>
+                </form> */}
+                <div>
+                {filtered.map(station =>
                    // this name should link to the station info
                     <Link to={`/stations/${station._id}`}><p key={station._id}>{station.name}</p>
                     </Link>
                 )}
+                </div>
             </article>
         </div>
     )

@@ -11,29 +11,18 @@ function Navbar(){
     return (
         <div className="navbar">
             <nav >
-                <div>
-                    <Link to='/' >
-                        <h3>Berlin Bicycle Station</h3>
-                    </Link>
+                <div id="title">
+                        <h3> <Link to='/' >Berlin Bicycle Station</Link></h3>
                 </div>
                 <ul>
-                    <Link to='/about' >
-                        <li>about the project</li>
-                    </Link>
-                    <Link to='/start'>
-                        <li>participate</li> 
-                    </Link>
-                    <Link to='/suggestions'>
-                        <li>see the suggestions</li>    
-                    </Link>
-                    <Link to='/contact'> 
-                         <li>contact us</li> 
-                    </Link>
+                        <li> <Link to='/about' >about the project</Link></li>
+                        <li><Link to='/start'>participate</Link></li> 
+                        <li><Link to='/suggestions'>see the suggestions</Link></li>    
+                         <li><Link to='/contact'>contact us</Link></li> 
+                    
                     {isLoggedIn ? 
                         <button onClick={logoutUser}>Log out</button> :
-                    <Link to='/signup'>
-                        <li>Sign-up / Log-in</li>
-                    </Link>
+                        <li><Link to='/signup'>Sign-up / Log-in </Link></li>
                     }
                         
                 </ul>

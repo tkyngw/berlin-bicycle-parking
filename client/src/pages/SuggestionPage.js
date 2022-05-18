@@ -1,12 +1,12 @@
-
+import {Link} from 'react-router-dom'
 
 function SuggestionPage() {
     return (
-        <div>
-            <aside>
-                <h3>share us your idea now! this links to new suggestion</h3>
+        <div className="contentpage">
+            <aside id='sidebar'>
+                <h3><Link to='/start'>share us your idea now!</Link></h3>
             </aside>
-            <article>
+            <article className="station">
                 <section>
                     <h2>Suggestions from others</h2>
                 </section>

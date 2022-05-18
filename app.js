@@ -25,6 +25,9 @@ app.use("/api/stations", stations);
 const suggestions = require("./routes/suggestions");
 app.use("/api/suggestions", isAuthenticated, suggestions);
 
+const spotss = require("./routes/spots");
+app.use("/api/spots", isAuthenticated, suggestions);
+
 const auth = require("./routes/auth");
 app.use("/api/auth", auth);
 
