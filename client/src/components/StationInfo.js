@@ -104,16 +104,17 @@ function StationInfo() {
                             <div id='suggnumber'>suggestions</div>
                         </div>
                     </div>
-                        {!showSuggestion? 
+                    {!showSuggestion? 
 
-                            <NewSuggestion station={station} lng={lng} lat={lat} />
-                            : 
-                    
-                        <div>   
+                        <NewSuggestion station={station} lng={lng} lat={lat} />
+                        : 
+                    <div>   
+                        <div id="station-button">                        
                             <Link to=''><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
                             <Link to='/suggestions'><button>View Suggestions</button></Link> 
-                        </div>}
-                   
+                        </div>
+
+                    </div>}
                 </section>
             </article>
         </div>

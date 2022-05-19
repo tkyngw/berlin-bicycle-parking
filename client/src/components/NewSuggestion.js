@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import Review from './Review'
 
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { useParams } from 'react-router-dom';
@@ -8,8 +9,9 @@ import { useParams } from 'react-router-dom';
 function NewSuggestion(station) {
 console.log(station.station.name)
 const name = station.station.name
-const {stationId} = useParams()
-console.log(stationId)
+
+const {id} = useParams()
+console.log(id)
 
 const [newLng, setNewLng] = useState()
 const [newLat, setNewLat] = useState()
@@ -88,15 +90,16 @@ useEffect(() => {
     priceSum()
 }, [stands, amount])
 
+const storedToken = localStorage.getItem('authToken')
 
   const handleSubmit = (e) =>{
       e.preventDefault()
-      const reqbody = { stationId, location : {latitude: newLat, longitude: newLng}, stands : {type: stands, amount: amount, sum: sum}}
-      console.log(reqbody)
+      const reqbody = { name, location : {latitude: newLat, longitude: newLng}, stands : {type: stands, amount: amount, sum: sum}}
+    //   console.log(reqbody)
 
       axios
       .post('/api/suggestions', reqbody)
-      .then()
+      .then(response => console.log(response))
   }
 
 
@@ -114,7 +117,7 @@ useEffect(() => {
                 <section>
                
                     <h4>you chose </h4>
-                    <h2>{name} / {station.station.line}</h2>
+                    <h2><strong>{name} / {station.station.line}</strong></h2>
                     <Link to='/start'><p>choose another station</p></Link>
 
                 </section>
@@ -138,6 +141,9 @@ useEffect(() => {
                     <h5>Price: {price} € / 1p</h5>
                     <h4>Sum: {sum} €</h4>
                 </section>                
+                <section>
+                    <Review />
+                </section>
             </article>
         </div>
     )
