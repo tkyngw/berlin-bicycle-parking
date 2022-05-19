@@ -10,6 +10,7 @@ const suggestionSchema = new Schema(
         amount: Number,
         sum: Number,
     }
+}
 );
 
 const Suggestion = model("Suggestion", suggestionSchema);
