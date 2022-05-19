@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams, Link} from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import NewSuggestion from './NewSuggestion'
 import circle from '../images/circle.png'
 import blackcircle from '../images/black-circle.png'
 
 import React, { useRef } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-
+import {Link} from 'react-scroll'
 
 
 // import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
@@ -106,12 +106,12 @@ function StationInfo() {
                     </div>
                         {!showSuggestion? 
 
-                            <NewSuggestion station={station} lng={lng} lat={lat} />
+                            <NewSuggestion station={station} lng={lng} lat={lat} id="newSuggestion" />
                             : 
                     
                         <div>   
-                            <Link to=''><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
-                            <Link to='/suggestions'><button>View Suggestions</button></Link> 
+                            <Link to='newSuggestion'><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
+                            {/* <Link to='/suggestions'><button>View Suggestions</button></Link>  */}
                         </div>}
                    
                 </section>
