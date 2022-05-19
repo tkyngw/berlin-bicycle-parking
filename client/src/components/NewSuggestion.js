@@ -8,9 +8,6 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 function NewSuggestion(station) {
 console.log(station.station.name)
 
-const [lng, setLng] = useState()
-const [lat, setLat] = useState()
-
 const [lng2, setLng2] = useState()
 const [lat2, setLat2] = useState()
 const [count, setCount] = useState(0)
@@ -25,7 +22,7 @@ useEffect(()=>{
              container: 'map2', // container ID
              style: 'mapbox://styles/tkyngw/cl3bro7yd000c15psxzf1aonu', // style URL
              center: [station.lng, station.lat], // starting position [lng, lat]
-             zoom: 15 // starting zoom
+             zoom: 14 // starting zoom
              });
         
          map.on('click',(e) => {
@@ -71,11 +68,7 @@ console.log(lat2)
                     <Link to='/start'><p>choose another station</p></Link>
 
                 </section>
-             
-                <div >
                       <div className="map-container" id="map2"/>
-                </div>
-            
                 <section>
                     <form onSubmit={handleSubmit}>
                      <p>Choose types of bicycle stands</p>

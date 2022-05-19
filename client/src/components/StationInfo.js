@@ -84,33 +84,34 @@ function StationInfo() {
         <div className='contentpage'>
             <aside id="sidebar">
                 <h3>About the station you chose</h3>
+                <h2>2</h2>
                 <img src={circle} alt="circle" width={100}></img>
             </aside>
             <article>
                 <section className="station">
-                <div onClick={newMarker}>
-                      <div className="map-container" id="map"/>
-                </div>
-                <div>
-                    <h3>Station name: {station?.name} </h3>
-                    <p>Line: {station?.line}</p>
-                    <p>District: {station?.district}</p>
-                    <p>Current Capacity: </p>
-                    <p>Load Factor: </p>
-                    <div className='sugg'>
-                        <img src={blackcircle} alt="circle" id="blackcircle"></img>
-                        <div id='suggnumber'>suggestions</div>
+                    <div onClick={newMarker}>
+                        <div className="map-container" id="map"/>
                     </div>
-                    {!showSuggestion? 
-              
-                        <NewSuggestion station={station} lng={lng} lat={lat} />
-                         : 
-                   
-                    <div>   
-                        <Link to=''><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
-                        <Link to='/suggestions'><button>View Suggestions</button></Link> 
-                    </div>}
-                </div>
+                    <div>
+                        <h3>Station name: {station?.name} </h3>
+                        <p>Line: {station?.line}</p>
+                        <p>District: {station?.district}</p>
+                        <p>Current Capacity: </p>
+                        <p>Load Factor: </p>
+                        <div className='sugg'>
+                            <img src={blackcircle} alt="circle" id="blackcircle"></img>
+                            <div id='suggnumber'>suggestions</div>
+                        </div>
+                        {!showSuggestion? 
+                
+                            <NewSuggestion station={station} lng={lng} lat={lat} />
+                            : 
+                    
+                        <div>   
+                            <Link to=''><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
+                            <Link to='/suggestions'><button>View Suggestions</button></Link> 
+                        </div>}
+                    </div>
                 </section>
             </article>
         </div>

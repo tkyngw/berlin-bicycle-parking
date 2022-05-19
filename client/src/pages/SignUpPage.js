@@ -33,17 +33,17 @@ function SignUpPage(){
 	const handlePassword = e => setPassword(e.target.value)
 
     return (
-        <div>
+        <div className="signup">
             <article>
             <h2>Create an account</h2>
                <form onSubmit={handleSubmit}>
-                   <input type="text" name="name" value={name} onChange={handleName} placeholder="name" />
+                   <input type="text" name="name" value={name} onChange={handleName} placeholder="Name" />
                    <input type="email" name="email" value={email} placeholder="Email" onChange={handleEmail}/>
                    <input type="password" name="password" value={password} onChange={handlePassword} placeholder="Password" />
-                   <button type="submit">Sign up</button>
+                   <p><button type="submit">Sign up</button>Have an account? <Link to='/login'>Log-in</Link></p>
                </form>
                {errorMessage && <h5>{errorMessage}</h5>}
-               <p>Have an account? <Link to='/login'>Log-in</Link></p>
+               
             </article>
 
         </div>

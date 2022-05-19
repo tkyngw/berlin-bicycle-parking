@@ -8,6 +8,7 @@ function StartPage() {
         <div className='contentpage'>
             <aside id="sidebar">
                 <h3>Choose a station to get started</h3>
+                <h2>1</h2>
                 <img src={circle} alt="circle" width={100}></img>
             </aside>
             <article className='station'>

@@ -2,14 +2,16 @@
 function ContactPage () {
 
     return(
-        <div>
-            <h2>help us make Berlin into a bicycle friendlier city</h2>
-            <form>
-                <input type="text" placeholder="your name" />
-                <input type="text" placeholder="Email"/>
-                <input type="text" placeholder="Message"/>
-                <button>send</button>
-            </form>
+        <div className='signup'>
+            <article>
+                <h2>help us make Berlin bicycle friendlier 🚲</h2>
+                <form action="mailto:berlin-bicycle-parking@email.com" method='get'>
+                    <input type="text" placeholder="your name" />
+                    <input type="text" placeholder="Email"/>
+                    <input type="text" placeholder="Message"/>
+                    <button>send</button>
+                </form>
+            </article>
         </div>
     )
 
