@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   Station.findById(req.params.id)
-  .populate('suggestions')
+  .populate('suggestion')
   .then(station => res.status(200).json(station))
   .catch(err => res.json(err))
 })

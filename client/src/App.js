@@ -11,6 +11,7 @@ import LogInPage from './pages/LogInPage'
 import ProtectedRoute from './components/ProtectedRoute';
 import StationInfo from './components/StationInfo';
 import Navbar from './components/Navbar';
+import Review from './components/Review'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path='/stations/:id' element={<StationInfo />} />
         <Route path='/signup' element={<SignUpPage/>} />
         <Route path='/login' element={<LogInPage />} />
+        <Route path='/suggestions/:id' element={<Review />} />
       </Routes>
     </div>
   );

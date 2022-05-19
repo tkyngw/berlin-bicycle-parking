@@ -8,8 +8,6 @@ import blackcircle from '../images/black-circle.png'
 import React, { useRef } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
-
-
 // import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
 
 // mapboxgl.accessToken = 'pk.eyJ1IjoidGt5bmd3IiwiYSI6ImNsMzhmOGE1ZjAwZXkzZW1meDI4aXU1YmcifQ.g68XCShXJROipd_fWdl3Pg';
@@ -23,7 +21,7 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 function StationInfo() {
 
     const { id } = useParams()
-    // console.log(id)
+    console.log(id)
 
     const [station, setStation] = useState('')
     const [showSuggestion, setShowSuggetions] = useState('false')
@@ -34,6 +32,9 @@ function StationInfo() {
     const [lat, setLat] = useState(52.52);
     const [zoom, setZoom] = useState(10);
 
+    const [suggestion, setSuggestion] = useState()
+ 
+    let count = 0
 
     useEffect(() => {
         axios
@@ -52,6 +53,26 @@ function StationInfo() {
     // console.log(lng)
     // console.log(lat)
 
+    // useEffect(() => {
+    //     axios
+    //     .get('/api/suggestions')
+    //     .then(response => {
+    //         console.log(response.data)
+    //         response.data.map(suggestion => suggestion.station === id ? count ++ : count)
+    //     })
+    //     .catch(err => console.log(err))
+    // },[])
+
+    // const suggestionCounter = () => {
+    //     suggestion.map(sugg => sugg.station === id? count ++ : count)
+    // }
+
+    // useEffect(() => {
+    //     setCount(count)
+    // }, [suggestion])
+
+    console.log(count)
+
     useEffect(()=>{
         axios
         .get('https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js')
@@ -69,11 +90,7 @@ function StationInfo() {
                 .addTo(map);
         })
         .catch(err => console.log(err))
-    })
-
-    const newMarker = (e) => {
-
-    }
+    }, [])
 
     const handleClicked = () => {
         setShowSuggetions(!showSuggestion) 
@@ -88,7 +105,7 @@ function StationInfo() {
             </aside>
             <article>
                 <section className="station">
-                    <div onClick={newMarker}>
+                    <div >
                         <div className="map-container" id="map"/>
                     </div>
                     <div className='info-container'>
@@ -96,13 +113,13 @@ function StationInfo() {
                             <h3>Station name: {station?.name} </h3>
                             <p>Line: {station?.line}</p>
                             <p>District: {station?.district}</p>
-                            <p>Current Capacity: </p>
-                            <p>Load Factor: </p>
+                            <p>Current Capacity: {station?.capacity}</p>
                         </div>
-                        <div className='sugg'>
+                        {/* <div className='sugg'>
                             <img src={blackcircle} alt="circle" id="blackcircle"></img>
-                            <div id='suggnumber'>suggestions</div>
-                        </div>
+                          
+                            <div id='suggnumber'>  <h1>{count}</h1> suggestions</div>
+                        </div> */}
                     </div>
                     {!showSuggestion? 
 
