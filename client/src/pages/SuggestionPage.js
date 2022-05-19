@@ -2,28 +2,32 @@ import {Link} from 'react-router-dom'
 
 function SuggestionPage() {
     return (
-        <div className="contentpage">
+        <div className="suggestionpage">
             <aside id='sidebar'>
-                <h3><Link to='/start'>share us your idea now!</Link></h3>
+                <div id='frame'>
+                <h3>share us your idea now!</h3>
+                <Link to='/start'>go to suggestion</Link>
+                </div>
             </aside>
-            <article className="station">
+            <article className="suggestion">
                 <section>
                     <h2>Suggestions from others</h2>
                 </section>
                 <section>
-                    <table>
+                    <table className='table'>
                         <thead>
                             <tr>
-                                <td>Station</td>
-                                <td>Line</td>
-                                <td>Stands</td>
-                                <td>Suggestions</td>
+                                <th scope="col">Station</th>
+                                <th scope="col">Line</th>
+                                <th scope="col">Stands</th>
+                                <th scope="col">Suggestions</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>station name</td>
-                                <td>line</td>
+                                <td width={280}>station name</td>
+                                <td width={140}>line</td>
                                 <td>amount of stands</td>
                                 <td>number of suggestions</td>
                                 <td><button>view</button></td>

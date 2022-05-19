@@ -42,9 +42,9 @@ const handlePassword = e => setPassword(e.target.value)
 
 
     return (
-        <div>
+        <div className="signup">
             <article>
-            <h2>Log in to leave a suggestion </h2>
+            <h2>Log in </h2>
                <form onSubmit={handleSubmit}>
                    <input type="email" value={email} placeholder="Email" onChange={handleEmail}/>
                    <input type="password" value={password} placeholder="Password" onChange={handlePassword}/>

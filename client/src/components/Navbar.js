@@ -22,7 +22,7 @@ function Navbar(){
                     
                     {isLoggedIn ? 
                         <button onClick={logoutUser}>Log out</button> :
-                        <li><Link to='/signup'>Sign-up / Log-in </Link></li>
+                        <button><Link to='/signup'>Sign-up / Log-in </Link></button>
                     }
                         
                 </ul>
