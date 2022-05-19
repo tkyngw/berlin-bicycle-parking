@@ -67,7 +67,6 @@ function StationInfo() {
             const marker = new mapboxgl.Marker({color: 'black'})
                 .setLngLat([lng, lat])
                 .addTo(map);
-            
         })
         .catch(err => console.log(err))
     })
@@ -92,18 +91,21 @@ function StationInfo() {
                     <div onClick={newMarker}>
                         <div className="map-container" id="map"/>
                     </div>
-                    <div>
-                        <h3>Station name: {station?.name} </h3>
-                        <p>Line: {station?.line}</p>
-                        <p>District: {station?.district}</p>
-                        <p>Current Capacity: </p>
-                        <p>Load Factor: </p>
+                    <div className='info-container'>
+                        <div id="station-info">
+                            <h3>Station name: {station?.name} </h3>
+                            <p>Line: {station?.line}</p>
+                            <p>District: {station?.district}</p>
+                            <p>Current Capacity: </p>
+                            <p>Load Factor: </p>
+                        </div>
                         <div className='sugg'>
                             <img src={blackcircle} alt="circle" id="blackcircle"></img>
                             <div id='suggnumber'>suggestions</div>
                         </div>
+                    </div>
                         {!showSuggestion? 
-                
+
                             <NewSuggestion station={station} lng={lng} lat={lat} />
                             : 
                     
@@ -111,7 +113,7 @@ function StationInfo() {
                             <Link to=''><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
                             <Link to='/suggestions'><button>View Suggestions</button></Link> 
                         </div>}
-                    </div>
+                   
                 </section>
             </article>
         </div>
