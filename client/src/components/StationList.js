@@ -49,8 +49,6 @@ function StationList() {
 
     })
 
-    console.log()
-    
     return (
         <div className='stationList'>
             <article>
