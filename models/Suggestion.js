@@ -9,7 +9,6 @@ const suggestionSchema = new Schema(
         type: {type: String},
         amount: Number,
         sum: Number,
-        }
     }
 );
 
