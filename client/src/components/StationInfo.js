@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams, Link} from 'react-router-dom'
+import { useParams} from 'react-router-dom'
 import NewSuggestion from './NewSuggestion'
 import circle from '../images/circle.png'
 import blackcircle from '../images/black-circle.png'
 
 import React, { useRef } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-
+import {Link} from 'react-scroll'
 // import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
 
 // mapboxgl.accessToken = 'pk.eyJ1IjoidGt5bmd3IiwiYSI6ImNsMzhmOGE1ZjAwZXkzZW1meDI4aXU1YmcifQ.g68XCShXJROipd_fWdl3Pg';
