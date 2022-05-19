@@ -3,13 +3,16 @@ const { Schema, model } = require("mongoose");
 const suggestionSchema = new Schema(
     {
     user: [ {type: Schema.Types.ObjectId, ref: 'User'}],
-    station : { type: Schema.Types.ObjectId, ref : 'Station'},
+    stationId : { type: Schema.Types.ObjectId, ref : 'Station'},
+    location : {
+      latitude : Number,
+      longitude : Number
+    },
     stands : [{ 
         type: {type: String},
         amount: Number,
-        price : Number,
-        }],
-    size : Number
+        sum: Number,
+        }]
     }
 );
 

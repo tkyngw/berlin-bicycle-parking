@@ -14,13 +14,13 @@ router.get('/', (req, res, next) => {
 
 // create a new suggestion
 router.post('/', (req, res, next) => {
-	const { user, station, stands, size } = req.body
+	const { user, stationId, location, stands } = req.body
 
 	Suggestion.create({
 		user: user,
-		station, station,
-		stands, stands,
-		size: size
+		stationId: stationId,
+        location: location,
+		stands: stands,
 	})
 		.then(response => res.json(response))
 		.catch(err => res.json(err))
