@@ -104,8 +104,7 @@ function StationInfo() {
                             <div id='suggnumber'>suggestions</div>
                         </div>
                     </div>
-                        {!showSuggestion? 
-
+                    {!showSuggestion? 
                             <NewSuggestion station={station} lng={lng} lat={lat} id="newSuggestion" />
                             : 
                     
@@ -114,6 +113,7 @@ function StationInfo() {
                             {/* <Link to='/suggestions'><button>View Suggestions</button></Link>  */}
                         </div>}
                    
+
                 </section>
             </article>
         </div>
