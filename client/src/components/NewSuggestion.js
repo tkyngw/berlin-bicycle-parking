@@ -11,7 +11,7 @@ console.log(station.station.name)
 const name = station.station.name
 
 const {id} = useParams()
-console.log(id)
+console.log('this is the station id', id)
 
 const [newLng, setNewLng] = useState()
 const [newLat, setNewLat] = useState()
@@ -22,6 +22,8 @@ const [stands, setStands] = useState('Bicycle Rack')
 const [amount, setAmount] = useState(1)
 const [price, setPrice] = useState(40)
 const [sum, setSum] = useState()
+
+const [suggestionId, setSuggestionId] = useState()
 
 useEffect(()=>{
     axios
@@ -94,15 +96,25 @@ const storedToken = localStorage.getItem('authToken')
 
   const handleSubmit = (e) =>{
       e.preventDefault()
-      const reqbody = { name, location : {latitude: newLat, longitude: newLng}, stands : {type: stands, amount: amount, sum: sum}}
-    //   console.log(reqbody)
+      console.log('object');
+      const reqbody = { name, station: id, location : {latitude: newLat, longitude: newLng}, stands : {type: stands, amount: amount, sum: sum}}
+      console.log('this is ', reqbody)
 
       axios
       .post('/api/suggestions', reqbody)
-      .then(response => console.log(response))
+      .then((response) => {
+        console.log('this is from the frontend', response)
+        setSuggestionId(response.data._id)
+    })
   }
 
+  console.log('new suggestion id', suggestionId)
 
+//   const getSuggestion = () => {
+//       axios
+//       .get(`/suggestions/${suggestionId}`)
+//       .then(response => console.log( response))
+//   }
 
 
   // 1. get the coordinate of the marker
@@ -140,10 +152,8 @@ const storedToken = localStorage.getItem('authToken')
                     </form>
                     <h5>Price: {price} € / 1p</h5>
                     <h4>Sum: {sum} €</h4>
-                </section>                
-                <section>
-                    <Review />
-                </section>
+                </section>         
+                <Link to={`/suggestions/${suggestionId}`}><button>View Suggestions</button></Link>        
             </article>
         </div>
     )

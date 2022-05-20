@@ -9,7 +9,7 @@ function Navbar(){
 
 
     return (
-        <div className="navbar">
+        <div className="nav">
             <nav >
                 <div id="title">
                         <h3> <Link to='/' >Berlin Bicycle Station</Link></h3>

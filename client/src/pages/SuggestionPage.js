@@ -1,29 +1,32 @@
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import StationInfo from '../components/StationInfo';
 
 function SuggestionPage() {
 
     const [suggestions, setSuggestions] = useState([])
-
-    const getAllSuggestions = () => {
+ 
+    useEffect(() => {
         axios
         .get(`/api/suggestions`)
         .then(response => {
-            // console.log(response.data)
+            console.log(response.data)
             setSuggestions(response.data)
         })
         .catch(err => {console.log(err)
         })
-    }
-
-    useEffect(() => {
-        getAllSuggestions()
     }, [])
 
-    console.log(suggestions)
+    let count = 0
+    suggestions.map((suggestion) => { 
+       if(suggestion.name === 'Alexanderplatz' ){
+        count ++
+       }
+    })
 
-   
+    console.log(count)
+    
     return (
         <div className="suggestionpage">
             <aside id='sidebar'>
@@ -41,7 +44,7 @@ function SuggestionPage() {
                         <thead>
                             <tr>
                                 <th scope="col">Station</th>
-                                <th scope="col">Line</th>
+                                {/* <th scope="col">Line</th> */}
                                 <th scope="col">Stands</th>
                                 <th scope="col">Suggestions</th>
                                 <th scope="col"></th>
@@ -49,12 +52,12 @@ function SuggestionPage() {
                         </thead>
                         <tbody>
                         {suggestions.map(suggestion => 
-                            <tr>
+                            <tr key={suggestion._id}>
                                 <td width={280}>{suggestion.name}</td>
-                                <td width={140}></td>
+                                {/* <td width={140}></td> */}
                                 <td>{suggestion.stands.amount}</td>
-                                <td>number of suggestions</td>
-                                {/* <td><Link to={`/stations/${station._id}`}><button>view</button></Link></td> */}
+                                <td></td>
+                                <td><Link to={`/suggestions/${suggestion._id}`}><button>view</button></Link></td>
                             </tr>
                             )}
                         </tbody>

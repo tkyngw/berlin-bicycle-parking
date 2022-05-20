@@ -14,10 +14,11 @@ router.get('/', (req, res, next) => {
 
 // create a new suggestion
 router.post('/', (req, res, next) => {
-	const { name, location, stands, sum } = req.body
+	const { name, station, location, stands, sum } = req.body
 
 	Suggestion.create({
         name: name,
+        station: station,
         location: location,
         stands: stands,
         sum: sum
@@ -28,10 +29,10 @@ router.post('/', (req, res, next) => {
 
 // return a specific suggestion
 router.get('/:id' , (req, res, next) => {
-    const { suggestionId } = req.params
 
-    Suggestion.findById(suggestionId)
-    .then(suggestion => res.json(suggestion))
+    Suggestion.findById(req.params.id)
+    .then(suggestion => {console.log('this is the' , suggestion) 
+        res.json(suggestion)})
     .catch(err => res.json(err))
 
 })

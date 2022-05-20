@@ -58,13 +58,16 @@ function StationList() {
                     <input type="text" value={name} onChange={getTheName}></input>
                     <button type="submit">submit</button>
                 </form> */}
-                <div>
-                {filtered.map(station =>
-                   // this name should link to the station info
-                    <Link to={`/stations/${station._id}`}><p key={station._id}>{station.name}</p>
-                    </Link>
-                )}
+               <div>
+                    {filtered.map(station => 
+                    // this name should link to the station info
+                    <p>
+                    {/* <p>{station.name[0]}</p> */}
+                    <Link to={`/stations/${station._id}`}><p key={station._id}>{station.name}</p></Link> 
+                    </p> 
+                    )}
                 </div>
+              
             </article>
         </div>
     )
