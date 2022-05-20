@@ -72,7 +72,7 @@ function StationInfo() {
     //     setCount(count)
     // }, [suggestion])
 
-    console.log(count)
+    // console.log(count)
 
     useEffect(()=>{
         axios
