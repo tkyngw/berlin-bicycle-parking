@@ -8,6 +8,7 @@ import blackcircle from '../images/black-circle.png'
 import React, { useRef } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import {Link} from 'react-scroll'
+
 // import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
 
 // mapboxgl.accessToken = 'pk.eyJ1IjoidGt5bmd3IiwiYSI6ImNsMzhmOGE1ZjAwZXkzZW1meDI4aXU1YmcifQ.g68XCShXJROipd_fWdl3Pg';
@@ -122,16 +123,15 @@ function StationInfo() {
                         </div> */}
                     </div>
                     {!showSuggestion? 
+                            <NewSuggestion station={station} lng={lng} lat={lat} id="newSuggestion" />
+                            : 
+                    
+                        <div>   
+                            <Link to='newSuggestion'><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
+                            {/* <Link to='/suggestions'><button>View Suggestions</button></Link>  */}
+                        </div>}
+                   
 
-                        <NewSuggestion station={station} lng={lng} lat={lat} />
-                        : 
-                    <div>   
-                        <div id="station-button">                        
-                            <Link to=''><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
-                            <Link to='/suggestions'><button>View Suggestions</button></Link> 
-                        </div>
-
-                    </div>}
                 </section>
             </article>
         </div>

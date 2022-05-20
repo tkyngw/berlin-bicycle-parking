@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const spotSchema = new Schema(
     {
     size : Number,
-    location : String,
+    location : { lat: Number, long: Number},
     district : String,
     distance : Number,
     holder : String,
