@@ -39,7 +39,8 @@ function StationInfo() {
         .catch(err => console.log(err))
         
     },[])
-  
+    
+    console.log(station)
     console.log(lng, lat)
 
     useEffect(()=>{
