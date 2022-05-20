@@ -8,20 +8,11 @@ import blackcircle from '../images/black-circle.png'
 import React, { useRef } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import {Link} from 'react-scroll'
-// import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
-
-// mapboxgl.accessToken = 'pk.eyJ1IjoidGt5bmd3IiwiYSI6ImNsMzhmOGE1ZjAwZXkzZW1meDI4aXU1YmcifQ.g68XCShXJROipd_fWdl3Pg';
-// const map = new mapboxgl.Map({
-//     container: 'map', // container ID
-//     style: 'mapbox://styles/mapbox/streets-v11', // style URL
-//     center: [-74.5, 40], // starting position [lng, lat]
-//     zoom: 9 // starting zoom
-// });
 
 function StationInfo() {
 
     const { id } = useParams()
-    console.log(id)
+    // console.log(id)
 
     const [station, setStation] = useState('')
     const [showSuggestion, setShowSuggetions] = useState('false')
@@ -40,7 +31,7 @@ function StationInfo() {
         axios
         .get(`/api/stations/${id}`)
         .then(response => {
-            // console.log(response.data)
+            console.log(response.data)
             setStation(response.data)
             setLng(response.data.longitude)
             setLat(response.data.latitude)
@@ -48,30 +39,8 @@ function StationInfo() {
         .catch(err => console.log(err))
         
     },[])
-
-    // console.log(station)
-    // console.log(lng)
-    // console.log(lat)
-
-    // useEffect(() => {
-    //     axios
-    //     .get('/api/suggestions')
-    //     .then(response => {
-    //         console.log(response.data)
-    //         response.data.map(suggestion => suggestion.station === id ? count ++ : count)
-    //     })
-    //     .catch(err => console.log(err))
-    // },[])
-
-    // const suggestionCounter = () => {
-    //     suggestion.map(sugg => sugg.station === id? count ++ : count)
-    // }
-
-    // useEffect(() => {
-    //     setCount(count)
-    // }, [suggestion])
-
-    console.log(count)
+  
+    console.log(lng, lat)
 
     useEffect(()=>{
         axios
@@ -90,13 +59,14 @@ function StationInfo() {
                 .addTo(map);
         })
         .catch(err => console.log(err))
-    }, [])
+    }, [lng, lat])
 
     const handleClicked = () => {
         setShowSuggetions(!showSuggestion) 
     }
 
     return (
+        
         <div className='contentpage'>
             <aside id="sidebar">
                 <h3>About the station you chose</h3>
@@ -108,30 +78,36 @@ function StationInfo() {
                     <div >
                         <div className="map-container" id="map"/>
                     </div>
-                    <div className='info-container'>
                         <div id="station-info">
-                            <h3>Station name: {station?.name} </h3>
-                            <p>Line: {station?.line}</p>
-                            <p>District: {station?.district}</p>
-                            <p>Current Capacity: {station?.capacity}</p>
-                        </div>
+                            <div>
+                                <h3>Station name: <strong>{station?.name}</strong> </h3><br />
+                                <h5>Line:  <strong>{station?.line}</strong></h5>
+                                <h5>District:  <strong>{station?.district}</strong></h5>
+                                <h5>Current Capacity:  <strong>{station?.capacity}</strong></h5>
+                            </div>
                         {/* <div className='sugg'>
                             <img src={blackcircle} alt="circle" id="blackcircle"></img>
                           
                             <div id='suggnumber'>  <h1>{count}</h1> suggestions</div>
                         </div> */}
-                    </div>
-                    {!showSuggestion? 
-
-                        <NewSuggestion station={station} lng={lng} lat={lat} />
-                        : 
-                    <div>   
-                        <div id="station-button">                        
-                            <Link to=''><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
-                            <Link to='/suggestions'><button>View Suggestions</button></Link> 
+                            <div id="station-button" >
+                                <Link to='test' spy={true} smooth={true}><button>Leave new Suggestions</button></Link>
+                            </div>
                         </div>
+                </section>
+                <section className="station-2">
+                    {/* {!showSuggestion?  */}
 
-                    </div>}
+                        <div id='test'>
+                        <NewSuggestion station={station} lng={lng} lat={lat} />
+                        </div>
+                        {/* :  */}
+                  
+                        <div id="station-button">                        
+                            {/* <Link to='test' spy={true} smooth={true}><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link> */}
+                          
+                            {/* <Link to='/suggestions'><button>View Suggestions</button></Link>  */}
+                        </div>
                 </section>
             </article>
         </div>

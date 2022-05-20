@@ -9,14 +9,14 @@ function SuggestionPage() {
  
     useEffect(() => {
         axios
-        .get(`/api/suggestions`)
+        .get('/api/suggestions')
         .then(response => {
             console.log(response.data)
             setSuggestions(response.data)
         })
         .catch(err => {console.log(err)
         })
-    }, [])
+    },[])
 
     let count = 0
     suggestions.map((suggestion) => { 

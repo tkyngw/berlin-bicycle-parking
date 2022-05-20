@@ -22,9 +22,9 @@ function App() {
         <Route path='/start' element={ <StartPage /> } />
         <Route path='/about' element={ <AboutPage /> } />
         <Route path='/suggestions' element={ 
-        <ProtectedRoute>
+        // <ProtectedRoute>
           <SuggestionPage />
-        </ProtectedRoute>
+        // </ProtectedRoute>
          } />
         <Route path='/contact' element={ <ContactPage />} />
         <Route path='/stations/:id' element={<StationInfo />} />

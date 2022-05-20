@@ -3,18 +3,20 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Review from './Review'
 
+
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { useParams } from 'react-router-dom';
 
 function NewSuggestion(station) {
+    
 console.log(station.station.name)
 const name = station.station.name
 
 const {id} = useParams()
 console.log('this is the station id', id)
 
-const [newLng, setNewLng] = useState()
-const [newLat, setNewLat] = useState()
+const [newLng, setNewLng] = useState('Longitude')
+const [newLat, setNewLat] = useState('Latitude')
 const [count, setCount] = useState(0)
 
 const [coordinate, setCoordinate] = useState()
@@ -24,6 +26,7 @@ const [price, setPrice] = useState(40)
 const [sum, setSum] = useState()
 
 const [suggestionId, setSuggestionId] = useState()
+const [showReview, setShowReview] = useState('false')
 
 useEffect(()=>{
     axios
@@ -35,8 +38,11 @@ useEffect(()=>{
              container: 'mapSugg', // container ID
              style: 'mapbox://styles/tkyngw/cl3bro7yd000c15psxzf1aonu', // style URL
              center: [station.lng, station.lat], // starting position [lng, lat]
-             zoom: 14 // starting zoom
+             zoom: 15 // starting zoom
              });
+
+        const nav = new mapboxgl.NavigationControl();
+            mapSugg.addControl(nav, 'top-left');
              
         const marker = new mapboxgl.Marker({color: 'black'})
              .setLngLat([station.lng, station.lat])
@@ -68,7 +74,7 @@ useEffect(()=>{
 function unitPrice () {   
     // console.log(stands);  
     if (stands === 'Bicycle Rack') {
-        setPrice(40)
+        setPrice(60)
     
     } if (stands === 'Vertical Stand') {
         setPrice(400)
@@ -92,7 +98,7 @@ useEffect(() => {
     priceSum()
 }, [stands, amount])
 
-const storedToken = localStorage.getItem('authToken')
+// const storedToken = localStorage.getItem('authToken')
 
   const handleSubmit = (e) =>{
       e.preventDefault()
@@ -123,37 +129,53 @@ const storedToken = localStorage.getItem('authToken')
   // 3. display the sum
   // 4. get all the above information and then post it to the backend route
 
+  const handleClicked = () => {
+    setShowReview(!showReview) 
+}
+
+console.log(stands)
+
     return (
-        <div >
-            <article>
-                <section>
-               
-                    <h4>you chose </h4>
-                    <h2><strong>{name} / {station.station.line}</strong></h2>
-                    <Link to='/start'><p>choose another station</p></Link>
+        <div  >
+            <article >
+                <div id='banner'>
+                    <h5>you chose </h5><br/>
+                    <h2><strong>[ {name} / {station.station.line} ]</strong></h2><br/>
+                    <Link to='/start'><p> ⬅︎  go back to choose another station</p></Link>
+                    <p>⬇ click on the map where you'd like to have bicycle parking stations</p>
 
-                </section>
-                      <div className="map-container" id="mapSugg"/>
-                <section>
-                     <form onSubmit={handleSubmit}>
-                        <label>Location {count} : </label>
-                        <input type="text" value={newLng + ', ' + newLat} onChange={handleCoordinate}></input>
+                </div>
+                <section >
+                    <div className="map-container" id="mapSugg"/>
+                     <div className='sug-input'>
+                        <h5><strong>Sum : {sum} €</strong></h5><br />
+                        <form onSubmit={handleSubmit}>
+                            <label>Location {count} : </label>
+                            <input type="text" value={newLng + ', ' + newLat} onChange={handleCoordinate}></input>
 
-                        <label>Choose types of bicycle stands</label>
-                        <select onChange={handleStands} value={stands}>
-                            <option value="Bicycle Rack">Bicycle Rack</option>
-                            <option value="Vertical Stand">Vertical Stand</option>
-                            <option value="Two-Tier Rack">Two-Tier Rack</option>
-                        </select>
+                            <label>Choose types of bicycle stands</label>
+                            <select onChange={handleStands} value={stands} id="stands">
+                                <option value="Bicycle Rack" >Bicycle Rack</option>
+                                <option value="Vertical Stand">Vertical Stand</option>
+                                <option value="Two-Tier Rack">Two-Tier Rack</option>
+                            </select><h6>Price of <strong>{stands}</strong> : <strong>{price}€</strong> / 1p</h6>
 
-                        <label>Amount of stands </label>
-                        <input type="number" value={amount} onChange={handleAmount}></input>
-                        <button type="submit">Submit</button>
-                    </form>
-                    <h5>Price: {price} € / 1p</h5>
-                    <h4>Sum: {sum} €</h4>
+                            <label>Amount of stands </label>
+                            <input type="number" value={amount} onChange={handleAmount}></input>
+                            <button type="submit" onClick={(e) => setShowReview(!showReview)}>Submit</button>
+                        </form>
+                        
+                        <Link to={`/suggestions/${suggestionId}`}><button>View Suggestions</button></Link> 
+                    </div>
+                    
                 </section>         
-                <Link to={`/suggestions/${suggestionId}`}><button>View Suggestions</button></Link>        
+                {!showReview? 
+                    <div id='review'>
+                        <Review stands={stands} />
+                    </div>
+                    : null
+                }
+    
             </article>
         </div>
     )
