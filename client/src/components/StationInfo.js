@@ -22,59 +22,39 @@ import {Link} from 'react-scroll'
 function StationInfo() {
 
     const { id } = useParams()
-    console.log(id)
+    // console.log(id)
 
     const [station, setStation] = useState('')
     const [showSuggestion, setShowSuggetions] = useState('false')
 
     // const mapContainer = useRef(null);
     // const map = useRef(null);
-    const [lng, setLng] = useState(13.40);
+    const [lng, setLng] = useState(13.405);
     const [lat, setLat] = useState(52.52);
     const [zoom, setZoom] = useState(10);
 
     const [suggestion, setSuggestion] = useState()
- 
-    let count = 0
 
-    useEffect(() => {
+    // let lng;
+    // let lat;
+
+    const getStation = () => {
         axios
         .get(`/api/stations/${id}`)
         .then(response => {
-            // console.log(response.data)
             setStation(response.data)
             setLng(response.data.longitude)
             setLat(response.data.latitude)
+            // lng = response.data.longitude
+            // lat = response.data.latitude 
         })
         .catch(err => console.log(err))
-        
-    },[])
+    }
 
-    // console.log(station)
-    // console.log(lng)
-    // console.log(lat)
 
-    // useEffect(() => {
-    //     axios
-    //     .get('/api/suggestions')
-    //     .then(response => {
-    //         console.log(response.data)
-    //         response.data.map(suggestion => suggestion.station === id ? count ++ : count)
-    //     })
-    //     .catch(err => console.log(err))
-    // },[])
+    console.log('initial', lng, lat)
 
-    // const suggestionCounter = () => {
-    //     suggestion.map(sugg => sugg.station === id? count ++ : count)
-    // }
-
-    // useEffect(() => {
-    //     setCount(count)
-    // }, [suggestion])
-
-    // console.log(count)
-
-    useEffect(()=>{
+    const getMap = () => {
         axios
         .get('https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js')
         .then(response => {
@@ -86,12 +66,21 @@ function StationInfo() {
                 center: [lng, lat], // starting position [lng, lat]
                 zoom: 14 // starting zoom
             });
+            console.log('station', lng, lat)
             const marker = new mapboxgl.Marker({color: 'black'})
                 .setLngLat([lng, lat])
                 .addTo(map);
         })
         .catch(err => console.log(err))
+    }
+
+    useEffect(()=>{
+        getStation()
     }, [])
+
+    useEffect(()=>{
+        getMap()
+    }, [station])
 
     const handleClicked = () => {
         setShowSuggetions(!showSuggestion) 
