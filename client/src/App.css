@@ -159,10 +159,15 @@ h1 {
     height:300vh;
     margin-left: 10vw;
     margin-top: 3%;
+    padding: 5%;
+}
+
+.stationList {
+    padding: 5%;
 }
 
 .station div {
-    padding: 5%;
+    /* padding: 5%; */
     list-style: none;
 }
 

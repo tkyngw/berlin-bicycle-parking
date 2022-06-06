@@ -16,29 +16,21 @@ function Review() {
             console.log('data retreieved', response.data)
             setReview(response.data)
         })
+        .catch(err => (err))
     },[])
 
+
     return (
-        <div>
+        <div className='contentpage'>
             <aside id='sidebar'>
                 <h3>review your suggestion</h3>
             </aside>
             <article>
-                <section>
-                    <h4>Summary of your suggestion</h4>
+                <section className="station">
+                    <p>your suggestion will help us to create <strong>{review.stands.amount} {review.stands.type}</strong> on <strong>{review.location.latitude}, {review.location.longitude}</strong>.</p>
+                    <button><Link to='/suggestions'>view other suggestions</Link></button>
                 </section>
-                <section>
-                     <div>
-                        <button>back</button>
-                        <p>expense /  total budget: </p>
-                    </div>
-                </section>
-                <section>
-                    <p>Spot component</p>
-                    <p>Stand component</p>
-                    <p>your suggestion will help us create - amout of racks - on - location -.</p>
-                </section>
-                <button><Link to='/suggestions'>view other suggestions</Link></button>
+                
             </article>
         </div>
     )

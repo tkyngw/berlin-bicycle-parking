@@ -1,7 +1,6 @@
 
 const router = require("express").Router();
 
-const res = require("express/lib/response");
 const Suggestion = require('../models/Suggestion');
 
 // get all the existing suggestions

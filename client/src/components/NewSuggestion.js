@@ -7,7 +7,7 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 import { useParams } from 'react-router-dom';
 
 function NewSuggestion(station) {
-console.log(station.station.name)
+// console.log(station.station.name)
 const name = station.station.name
 
 const {id} = useParams()
@@ -89,6 +89,9 @@ const handleAmount = (e) => setAmount(e.target.value)
 
 useEffect(() => {
     unitPrice() 
+}, [stands, amount])
+
+useEffect(() => {
     priceSum()
 }, [stands, amount])
 
