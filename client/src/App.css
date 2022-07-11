@@ -246,13 +246,65 @@ td button {
 }
 
 #station-info{
-    width: 60%;
-
+    height: 800px;
 }
 
 .info-container{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    margin: 0
+    margin: 0;
+    height: 200px;
+    padding-top: 20px;
+}
+
+.black-btn{
+    background-color: black;
+    border: none;
+    color : #f5c70f;
+    width: 240px;
+    padding: 13px;
+    font-size: 1.1em;
+}
+
+.long-btn {
+    background-color: black;
+    border: none;
+    color : #f5c70f;
+    width: 100%;
+    padding: 13px;
+    font-size: 1.1em; 
+    margin-top: 20px;
+}
+
+#sugg-form{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    line-height: 2em;
+    height: 100px;
+}
+
+#sugg-form input {
+    border: none;
+    height: 2em;
+    width: 80%;
+}
+
+#sugg-form select{
+    border: none;
+    height: 2em;
+    width: 80%;
+}
+
+#price {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#review {
+    margin-top: 80px;
+    margin-bottom: 80px;
 }

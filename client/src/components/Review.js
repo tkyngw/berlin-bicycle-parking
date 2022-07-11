@@ -30,7 +30,6 @@ function Review() {
                     <p>your suggestion will help us to create <strong>{review.stands.amount} {review.stands.type}</strong> on <strong>{review.location.latitude}, {review.location.longitude}</strong>.</p>
                     <button><Link to='/suggestions'>view other suggestions</Link></button>
                 </section>
-                
             </article>
         </div>
     )

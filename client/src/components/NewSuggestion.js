@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Review from './Review'
 
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
@@ -24,6 +24,9 @@ const [price, setPrice] = useState(40)
 const [sum, setSum] = useState()
 
 const [suggestionId, setSuggestionId] = useState()
+const [showReview, setShowReview] = useState('false')
+const [review, setReview] = useState()
+
 
 useEffect(()=>{
     axios
@@ -48,17 +51,19 @@ useEffect(()=>{
             // console.log(e.lngLat.lat)
             let newLng = e.lngLat.lng
             let newLat = e.lngLat.lat
-   
+
             // the way to create a new marker
             const newMarker = new mapboxgl.Marker({color: 'red', anchor: 'center'})
                 .setLngLat([newLng, newLat])
+                .setPopup(new mapboxgl.Popup({closeButton: true}).setText(`location ${count}`))
                 .addTo(mapSugg)
 
             setNewLng(newLng.toFixed(3))
             setNewLat(newLat.toFixed(3))
             setCount((count) => count +1)
-            
+
             });
+
     })
     .catch(err => console.log(err))
 },[])
@@ -97,21 +102,29 @@ useEffect(() => {
 
 const storedToken = localStorage.getItem('authToken')
 
-  const handleSubmit = (e) =>{
-      e.preventDefault()
-      console.log('object');
-      const reqbody = { name, station: id, location : {latitude: newLat, longitude: newLng}, stands : {type: stands, amount: amount, sum: sum}}
-      console.log('this is ', reqbody)
+const scrollToRef = useRef()
 
-      axios
-      .post('/api/suggestions', reqbody)
-      .then((response) => {
-        console.log('this is from the frontend', response)
-        setSuggestionId(response.data._id)
+const handleReview = (e) =>{
+    e.preventDefault()
+    console.log('object');
+    const reqbody = { name, station: id, location : {latitude: newLat, longitude: newLng}, stands : {type: stands, amount: amount, sum: sum}}
+    console.log('this is ', reqbody)
+    
+    // setReview(reqbody)
+    // setShowReview(!showReview) 
+    // scrollToRef.current.scrollIntoView()
+
+    axios
+    .post('/api/suggestions', reqbody)
+    .then((response) => {
+    console.log('this is from the frontend', response)
+    setSuggestionId(response.data._id)
     })
-  }
+}
 
-  console.log('new suggestion id', suggestionId)
+//   console.log('new suggestion id', suggestionId)
+
+
 
 //   const getSuggestion = () => {
 //       axios
@@ -128,35 +141,59 @@ const storedToken = localStorage.getItem('authToken')
 
     return (
         <div >
-            <article>
+            <article >
                 <section>
                
                     <h4>you chose </h4>
                     <h2><strong>{name} / {station.station.line}</strong></h2>
-                    <Link to='/start'><p>choose another station</p></Link>
+                    <Link to='/start'><p>⬅︎ choose another station</p></Link>
 
                 </section>
-                      <div className="map-container" id="mapSugg"/>
+                <div>
+                    <p>Mark on the map below where you'd like to create bicycle parking stations</p>
+                </div>
+                <div className="map-container" id="mapSugg"/>
+
                 <section>
-                     <form onSubmit={handleSubmit}>
-                        <label>Location {count} : </label>
-                        <input type="text" value={newLng + ', ' + newLat} onChange={handleCoordinate}></input>
-
-                        <label>Choose types of bicycle stands</label>
-                        <select onChange={handleStands} value={stands}>
-                            <option value="Bicycle Rack">Bicycle Rack</option>
-                            <option value="Vertical Stand">Vertical Stand</option>
-                            <option value="Two-Tier Rack">Two-Tier Rack</option>
-                        </select>
-
-                        <label>Amount of stands </label>
-                        <input type="number" value={amount} onChange={handleAmount}></input>
-                        <button type="submit">Submit</button>
-                    </form>
-                    <h5>Price: {price} € / 1p</h5>
-                    <h4>Sum: {sum} €</h4>
+                     <form onSubmit={handleReview}>
+                        <div id='sugg-form' >
+                            <div id='location'>
+                                <label for='location'>Location you chose </label>
+                                <input type="text" value={count<1? ' ': newLng + ', ' + newLat} onChange={handleCoordinate}></input>
+                            </div>
+                            <div>
+                                <label for='stand'>Choose types of bicycle stands</label>
+                                <select onChange={handleStands} value={stands}>
+                                    <option value="Bicycle Rack">Bicycle Rack</option>
+                                    <option value="Vertical Stand">Vertical Stand</option>
+                                    <option value="Two-Tier Rack">Two-Tier Rack</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for='amount'>Amount of stands </label>
+                                <input type="number" value={amount} onChange={handleAmount} min='0'></input>
+                            </div>
+                        </div>
+                        <div id='price'>
+                                <p>Price: {price} € / 1p</p>
+                                <h4>Sum: {sum} €</h4>
+                                <button className='black-btn' type="submit">Submit your suggestion</button>
+                        </div>
+                    </form>   
+                    {/* <div >  
+                        {!showReview? 
+                            <div id='review'>
+                                <p>Your suggestion will help us to create <strong>{review.stands.amount} {review.stands.type}</strong> near <strong>{review.name}</strong> station. Estimated cost is <strong>{sum}€</strong>.</p>
+                                <button className='black-btn' type="submit">Submit</button>
+                            </div> 
+                                : 
+                            <div >   
+                            </div>
+                        }
+                    </div> */}
+                      
                 </section>         
-                <Link to={`/suggestions/${suggestionId}`}><button>View Suggestions</button></Link>        
+                <Link to={`/suggestions/${suggestionId}`}><button className='long-btn'>view other suggestion</button></Link>        
             </article>
         </div>
     )

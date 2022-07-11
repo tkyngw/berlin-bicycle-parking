@@ -80,47 +80,47 @@ function StationInfo() {
 
     useEffect(()=>{
         getMap()
-    }, [station])
+    }, [])
+
+    const scrollToRef = useRef()
 
     const handleClicked = () => {
         setShowSuggetions(!showSuggestion) 
+        scrollToRef.current.scrollIntoView()
     }
 
     return (
         <div className='contentpage'>
             <aside id="sidebar">
-                <h3>About the station you chose</h3>
                 <h2>2</h2>
-                <img src={circle} alt="circle" width={100}></img>
+                <h3>About the station you chose</h3>
             </aside>
             <article>
                 <section className="station">
-                    <div >
-                        <div className="map-container" id="map"/>
-                    </div>
+                <div id="station-info">
                     <div className='info-container'>
-                        <div id="station-info">
-                            <h3>Station name: {station?.name} </h3>
+                        <div>
+                            <h2><strong> {station?.name} </strong></h2>
                             <p>Line: {station?.line}</p>
                             <p>District: {station?.district}</p>
                             <p>Current Capacity: {station?.capacity}</p>
                         </div>
-                        {/* <div className='sugg'>
-                            <img src={blackcircle} alt="circle" id="blackcircle"></img>
-                          
-                            <div id='suggnumber'>  <h1>{count}</h1> suggestions</div>
-                        </div> */}
                     </div>
+                    <div >
+                    <div className="map-container" id="map"/>
+                    </div>
+                    <Link to='newSuggestion'><button className='long-btn'onClick={(e) => handleClicked()}>leave your suggestion on this station</button></Link>
+                </div>
+                <div ref={scrollToRef}>  
                     {!showSuggestion? 
                             <NewSuggestion station={station} lng={lng} lat={lat} id="newSuggestion" />
                             : 
                     
-                        <div>   
-                            <Link to='newSuggestion'><button onClick={(e) => setShowSuggetions(!showSuggestion)}>New Suggestions</button></Link>
+                        <div >   
                             {/* <Link to='/suggestions'><button>View Suggestions</button></Link>  */}
-                        </div>}
-                   
-
+                        </div>
+                    }
+                </div>
                 </section>
             </article>
         </div>
