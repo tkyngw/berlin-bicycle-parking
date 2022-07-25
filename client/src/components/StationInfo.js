@@ -9,16 +9,6 @@ import React, { useRef } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import {Link} from 'react-scroll'
 
-// import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
-
-// mapboxgl.accessToken = 'pk.eyJ1IjoidGt5bmd3IiwiYSI6ImNsMzhmOGE1ZjAwZXkzZW1meDI4aXU1YmcifQ.g68XCShXJROipd_fWdl3Pg';
-// const map = new mapboxgl.Map({
-//     container: 'map', // container ID
-//     style: 'mapbox://styles/mapbox/streets-v11', // style URL
-//     center: [-74.5, 40], // starting position [lng, lat]
-//     zoom: 9 // starting zoom
-// });
-
 function StationInfo() {
 
     const { id } = useParams()
@@ -29,14 +19,18 @@ function StationInfo() {
 
     // const mapContainer = useRef(null);
     // const map = useRef(null);
-    const [lng, setLng] = useState(13.405);
-    const [lat, setLat] = useState(52.52);
+    const [lng, setLng] = useState();
+    const [lat, setLat] = useState();
     const [zoom, setZoom] = useState(10);
 
     const [suggestion, setSuggestion] = useState()
 
-    // let lng;
-    // let lat;
+    // let initLng;
+    // let initLat;
+
+    useEffect(()=>{
+        getStation()
+    }, [])
 
     const getStation = () => {
         axios
@@ -45,12 +39,9 @@ function StationInfo() {
             setStation(response.data)
             setLng(response.data.longitude)
             setLat(response.data.latitude)
-            // lng = response.data.longitude
-            // lat = response.data.latitude 
         })
         .catch(err => console.log(err))
     }
-
 
     console.log('initial', lng, lat)
 
@@ -74,13 +65,10 @@ function StationInfo() {
         .catch(err => console.log(err))
     }
 
-    useEffect(()=>{
-        getStation()
-    }, [])
-
-    useEffect(()=>{
+    useEffect(() => {
         getMap()
-    }, [])
+    },[station])
+
 
     const scrollToRef = useRef()
 

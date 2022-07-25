@@ -27,6 +27,7 @@ const [suggestionId, setSuggestionId] = useState()
 const [showReview, setShowReview] = useState('false')
 const [review, setReview] = useState()
 
+const spots = []
 
 useEffect(()=>{
     axios
@@ -62,11 +63,15 @@ useEffect(()=>{
             setNewLat(newLat.toFixed(3))
             setCount((count) => count +1)
 
+            spots.push({lng: newLng, lat: newLat})
+            console.log(spots)
             });
 
     })
     .catch(err => console.log(err))
 },[])
+
+
 
 // console.log(lng2)
 // console.log(lat2)
@@ -159,6 +164,7 @@ const handleReview = (e) =>{
                         <div id='sugg-form' >
                             <div id='location'>
                                 <label for='location'>Location you chose </label>
+ 
                                 <input type="text" value={count<1? ' ': newLng + ', ' + newLat} onChange={handleCoordinate}></input>
                             </div>
                             <div>
@@ -180,6 +186,10 @@ const handleReview = (e) =>{
                                 <button className='black-btn' type="submit">Submit your suggestion</button>
                         </div>
                     </form>   
+                                 {/* <ul>
+                                    <li>ABC</li>
+                                    {spots.map((spot) => (<li>{spot.lng}, {spot.lat}</li>))}
+                                </ul> */}
                     {/* <div >  
                         {!showReview? 
                             <div id='review'>
