@@ -1,0 +1,1 @@
+This is a solo project built as the last project of a Web Development Bootcamp at Ironhack. 
