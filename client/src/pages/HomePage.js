@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import Arrow from '../images/downarrow.png'
+import Arrow from '../images/downarrow.png' 
 
 function HomePage(){
     return (

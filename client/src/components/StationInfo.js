@@ -2,8 +2,6 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams} from 'react-router-dom'
 import NewSuggestion from './NewSuggestion'
-import circle from '../images/circle.png'
-import blackcircle from '../images/black-circle.png'
 
 import React, { useRef } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
