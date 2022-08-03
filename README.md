@@ -1,4 +1,4 @@
-Introduction
+######Introduction
 
 Berlin-Bicycle-Parking allows citizens of Berlin to make suggestions on where to install bicycle parking systems around public transportation nodes.
 
