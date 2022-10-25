@@ -6,6 +6,18 @@ This app was made as the last project of the [Ironhack Web Developement Bootcamp
 
 🚲 see the app in action : [Berlin-Bicycle-Station](https://berlinbikestation.herokuapp.com/)
 
+
+
+### Tech Stacks Used 
+- HTML 
+- CSS
+- JavaScript
+- React
+- MongoDB
+- ExpressJS
+- NodeJS
+
+
 ### Basic Features
 
 - users can choose one of the provided station to start.
